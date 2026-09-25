@@ -41,7 +41,7 @@ public class Ejercicio1 {
 
                 Process proceso = listProcesos.get(i);
 
-                if (proceso.isAlive()) {
+                if (!proceso.isAlive()) {
                     System.out.println("Proceso " + proceso.pid() + " cerrado");
                     listProcesos.remove(proceso);
                 }
