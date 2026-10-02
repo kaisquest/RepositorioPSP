@@ -1,4 +1,4 @@
-package ejercicios;
+package ejercicios.ejerciciosAulaVirtual.UD1;
 
 import java.io.IOException;
 import java.util.ArrayList;
