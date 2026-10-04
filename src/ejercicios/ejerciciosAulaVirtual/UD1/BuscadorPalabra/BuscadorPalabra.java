@@ -1,3 +1,5 @@
+package ejercicios.ejerciciosAulaVirtual.UD1.BuscadorPalabra;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +31,27 @@ public class BuscadorPalabra {
         Scanner sc = new Scanner(System.in);
         String palabra = sc.nextLine();
 
-        String rutaFichero = "ejercicios.ejerciciosAulaVirtual.UD1.BuscadorPalabra.Archivos.DonQuijote.txt";
+        String rutaFichero = "src/ejercicios/ejerciciosAulaVirtual/UD1/BuscadorPalabra/Archivos/DonQuijote.txt";
 
 
         String classpath = System.getProperty("java.class.path");
-        String rutaClaseHija = "ejercicios.ejerciciosAulaVirtual.UD1.BuscadorPalabra";
-        ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, "BuscaPalabra", rutaFichero, palabra);
+        String rutaClaseHija = "ejercicios.ejerciciosAulaVirtual.UD1.BuscadorPalabra.BuscaPalabra";
+        ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, rutaClaseHija, rutaFichero, palabra);
 
-        System.out.println("Antes w8 4");
-        Process proceso = constructor.start();
+
+
 
         constructor.inheritIO();
+        Process proceso = constructor.start();
 
-//        BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-//        String resultado = lector.readLine();
+
+
+      // BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+      // String resultado = lector.readLine();
 
 
         proceso.waitFor();
-        System.out.println("Despues w8 4");
+
 
 
 
