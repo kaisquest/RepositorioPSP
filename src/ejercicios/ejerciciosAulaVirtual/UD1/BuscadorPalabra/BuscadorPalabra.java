@@ -1,6 +1,9 @@
 package ejercicios.ejerciciosAulaVirtual.UD1.BuscadorPalabra;
 
+import javax.xml.transform.Source;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -46,9 +49,12 @@ public class BuscadorPalabra {
 
             ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, rutaClaseHija, rutaFichero, splitArray[i]);
 
-            constructor.inheritIO();
+
             Process proceso = constructor.start();
             listProcesos.add(proceso);
+
+
+
         }
 
         while (!listProcesos.isEmpty()) {
@@ -59,16 +65,12 @@ public class BuscadorPalabra {
                 if (!proceso.isAlive()) {
                     listProcesos.remove(proceso);
                 }
-
             }
+            BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+            String resultado = lector.readLine();
 
-
+            System.out.println(resultado);
         }
-
-
-        // BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-        // String resultado = lector.readLine();
-
 
     }
 }
