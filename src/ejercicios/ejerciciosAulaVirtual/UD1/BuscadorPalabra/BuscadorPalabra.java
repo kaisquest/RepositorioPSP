@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.PatternSyntaxException;
 
 
 /**
@@ -27,34 +28,46 @@ public class BuscadorPalabra {
 
         List<Process> listProcesos = new ArrayList<>();
 
-        System.out.println("Qué palabra estás buscando");
-        Scanner sc = new Scanner(System.in);
-        String palabra = sc.nextLine();
 
         String rutaFichero = "src/ejercicios/ejerciciosAulaVirtual/UD1/BuscadorPalabra/Archivos/DonQuijote.txt";
 
-
         String classpath = System.getProperty("java.class.path");
         String rutaClaseHija = "ejercicios.ejerciciosAulaVirtual.UD1.BuscadorPalabra.BuscaPalabra";
-        ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, rutaClaseHija, rutaFichero, palabra);
+
+        System.out.println("Qué palabras estás buscando. Introdúcelas separadas por comas.");
+        Scanner sc = new Scanner(System.in);
+        String palabra = sc.nextLine();
+
+        String[] splitArray = palabra.split("[,\\s]+");
 
 
+        for (int i = 0; i < splitArray.length; i++) {
 
 
-        constructor.inheritIO();
-        Process proceso = constructor.start();
+            ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, rutaClaseHija, rutaFichero, splitArray[i]);
+
+            constructor.inheritIO();
+            Process proceso = constructor.start();
+            listProcesos.add(proceso);
+        }
+
+        while (!listProcesos.isEmpty()) {
+            for (int j = 0; j < listProcesos.size(); j++) {
+
+                Process proceso = listProcesos.get(j);
+
+                if (!proceso.isAlive()) {
+                    listProcesos.remove(proceso);
+                }
+
+            }
 
 
-
-      // BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-      // String resultado = lector.readLine();
+        }
 
 
-        proceso.waitFor();
-
-
-
-
+        // BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+        // String resultado = lector.readLine();
 
 
     }
