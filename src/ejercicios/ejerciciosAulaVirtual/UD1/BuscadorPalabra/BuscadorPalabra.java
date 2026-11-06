@@ -66,8 +66,7 @@ public class BuscadorPalabra {
 
                 Process proceso = listProcesos.get(j);
                 String resultado = listReader.get(j).readLine();
-                System.out.println(resultado);
-                //Queda conseguir que una vez una línea está leída se borre de la lista.
+                if (resultado != null) System.out.println(resultado);
 
                 if (!proceso.isAlive()) {
                     listProcesos.remove(proceso);
