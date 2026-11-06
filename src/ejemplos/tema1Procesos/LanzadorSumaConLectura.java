@@ -1,4 +1,4 @@
-package ejemplos;
+package ejemplos.tema1Procesos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ public class LanzadorSumaConLectura {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         String classpath = System.getProperty("java.class.path");
-        ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, "ejemplos.TareaSuma", "12", "30");
+        ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, "ejemplos.tema1Procesos.TareaSuma", "12", "30");
         // Esta vez NO usamos inheritIO(): queremos leer la salida nosotros,
         // no que se imprima directamente en nuestra consola.
         Process proceso = constructor.start();

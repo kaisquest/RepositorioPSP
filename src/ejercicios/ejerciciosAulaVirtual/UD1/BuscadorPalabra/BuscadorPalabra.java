@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.PatternSyntaxException;
+import java.util.stream.Stream;
 
 
 /**
@@ -30,6 +31,7 @@ public class BuscadorPalabra {
     static void main() throws IOException, InterruptedException {
 
         List<Process> listProcesos = new ArrayList<>();
+        List<BufferedReader> listReader = new ArrayList<>();
 
 
         String rutaFichero = "src/ejercicios/ejerciciosAulaVirtual/UD1/BuscadorPalabra/Archivos/DonQuijote.txt";
@@ -53,6 +55,8 @@ public class BuscadorPalabra {
             Process proceso = constructor.start();
             listProcesos.add(proceso);
 
+            BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+            listReader.add(lector);
 
 
         }
@@ -61,15 +65,16 @@ public class BuscadorPalabra {
             for (int j = 0; j < listProcesos.size(); j++) {
 
                 Process proceso = listProcesos.get(j);
+                String resultado = listReader.get(j).readLine();
+                System.out.println(resultado);
+                //Queda conseguir que una vez una línea está leída se borre de la lista.
 
                 if (!proceso.isAlive()) {
                     listProcesos.remove(proceso);
                 }
             }
-            BufferedReader lector = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-            String resultado = lector.readLine();
 
-            System.out.println(resultado);
+
         }
 
     }

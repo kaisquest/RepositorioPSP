@@ -1,4 +1,4 @@
-package ejemplos;
+package ejemplos.tema1Procesos;
 
 import java.io.IOException;
 

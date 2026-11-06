@@ -1,4 +1,4 @@
-package ejemplos;
+package ejemplos.tema1Procesos;
 
 public class TareaSaludo {
     public static void main(String[] args) {
