@@ -12,7 +12,7 @@ public class Ejercicio1_LaTortuga {
         @Override
         public void run() {
             for (int i = 0; i <= pasos; i++) {
-                System.out.printf("Tortuga: pasos" + i);
+                System.out.println("Tortuga: pasos" + i);
 
                 pausa(espera);
 
@@ -42,12 +42,12 @@ public class Ejercicio1_LaTortuga {
 
         final static int espera = 50;
         public int pasos;
-        public int siesta = new Random().nextInt(500,2000);
+        public int siesta = new Random().nextInt(500, 2000);
 
         @Override
         public void run() {
             for (int i = 0; i <= pasos; i++) {
-                System.out.printf("Liebre: pasos" + i);
+                System.out.println("Liebre: pasos" + i);
                 if (i == 5) {
                     pausa(siesta);
                     System.out.println("Liebre: se echa una siesta de " + siesta);
@@ -75,11 +75,10 @@ public class Ejercicio1_LaTortuga {
 
     }
 
-    void main() {
+    void main() throws InterruptedException {
         final int pasos = 10;
 
-
-        Thread tortuga = new Thread(() -> new Tortuga(pasos));
+        Thread tortuga = new Thread(new Tortuga(pasos));
         Thread liebre = new Liebre(pasos);
 
         tortuga.setName("tortuga");
@@ -90,8 +89,11 @@ public class Ejercicio1_LaTortuga {
 
         tortuga.start();
         liebre.start();
-
-
+        System.out.println("[juez]" + tortuga.getName() + "= " + tortuga.getState() + " " + liebre.getName() + "= " + liebre.getState());
+        tortuga.join();
+        liebre.join();
+        System.out.println("[juez]" + tortuga.getName() + "= " + tortuga.getState() + " " + liebre.getName() + "= " + liebre.getState());
+        System.out.println("Carrera terminada");
     }
 
 
