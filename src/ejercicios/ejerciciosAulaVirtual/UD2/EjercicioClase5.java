@@ -63,9 +63,9 @@ public class EjercicioClase5 {
             }
         }
 
-       public HiloLento(Thread hilo) {
-           this.hilo = hilo;
-       }
+        public HiloLento(Thread hilo) {
+            this.hilo = hilo;
+        }
     }
 
 
