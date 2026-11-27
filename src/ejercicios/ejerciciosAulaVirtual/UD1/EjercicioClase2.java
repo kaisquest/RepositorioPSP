@@ -16,7 +16,7 @@ public class EjercicioClase2 {
         String numero2 = sc.nextLine();
 
 
-                String classpath = System.getProperty("java.class.path");
+        String classpath = System.getProperty("java.class.path");
         String rutaClaseHija = "ejercicios.ejerciciosAulaVirtual.UD1.EjercicioClase2Contador";
 
         ProcessBuilder constructor = new ProcessBuilder("java", "-cp", classpath, rutaClaseHija, numero1, numero2);
